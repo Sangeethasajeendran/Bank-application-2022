@@ -1,0 +1,97 @@
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+       <div class="col-lg-10">
+           <a class="navbar-brand" routerLink="/dashboard">
+                <i class="fa-solid fa-building-columns text-primary fa-3x"></i>&nbsp;&nbsp;
+                <span class="title"><b>Online Bank</b></span>
+           </a>
+       </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Services
+                    </a>
+                    <ul class="dropdown-menu">
+                       
+                        <li><a class="dropdown-item" routerLink="/deposit">Deposit</a></li>
+                        <li><a class="dropdown-item" href="#">Balance Enquiry</a></li>
+                        <li><a class="dropdown-item" href="#">Transaction History</a></li>
+                       
+                       
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h1 class="text-primary">Withdraw Form</h1>
+    <p>
+        This is Dummy Data: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam eum reiciendis odio
+        laudantium eaque,
+        itaque impedit commodi aliquam, provident nemo quisquam animi non accusantium vitae nobis maiores fugit quas
+        exercitationem?Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, excepturi vero eligendi
+        aliquid, maxime quisquam vel quae, quis praesentium qui placeat deserunt sunt! Nobis, magni. Eaque expedita
+        harum totam corporis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime aspernatur doloribus
+        impedit, et vel laudantium architecto deleniti iste incidunt debitis nihil amet qui, culpa optio libero aut
+        natus dignissimos praesentium.
+    </p>
+    <div class="row">
+        <div class="col-4">
+            <img width="300px"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS6jg4oebC-wjoRt3W5iPJCL1vErLzYkU0Ow&usqp=CAU"
+                alt="">
+                <br>
+            <a routerLink="/dashboard" class="btn btn-primary mt-3">
+                <i class="fa-solid fa-chevron-left"></i>Back</a>
+        </div>
+
+        <div class="col-8 ">
+            <form (ngSubmit)="withdraw()" [formGroup]="withdrawForm" class="border p-3">
+               
+                <div class="form-floating mb-3">
+                    <input formControlName="acno" name="acno" type="text" class="form-control" id="floatingAcno"
+                        placeholder="Account Number">
+                    <label for="floatingInput">Account Number</label>
+                </div>
+                <div *ngIf="this.withdrawForm.get('acno')?.errors&&this.withdrawForm.get('acno')?.touched"
+                    class="text-danger">
+                    Invalid Account Number
+                </div>
+                <div class="form-floating mt-2">
+                    <input formControlName="pswd" name="pswd" type="password" class="form-control" id="floatingPassword"
+                        placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <div *ngIf="this.withdrawForm.get('pswd')?.errors&&this.withdrawForm.get('pswd')?.touched"
+                    class="text-danger">
+                    Invalid Password 
+                </div>
+
+                <div class="form-floating mt-3">
+                    <input formControlName="amount" name="amount" type="text" class="form-control"
+                        id="floatingInput" placeholder="Amount">
+                    <label for="floatingInput">Amount</label>
+                </div>
+                <div *ngIf="this.withdrawForm.get('amount')?.errors&&this.withdrawForm.get('amount')?.touched"
+                    class="text-danger">
+                    Invalid Amount
+                </div>
+                <!-- server response -->
+                <div  class="text-danger"><b>{{eMsg}}</b></div>
+                <button type="submit" class="btn btn-primary mt-2">
+                    Withdraw
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,127 @@
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <div class="col-lg-10">
+            <a class="navbar-brand" routerLink="">
+                <i class="fa-solid fa-building-columns text-primary fa-3x"></i>&nbsp;&nbsp;
+                <span class="title"><b>Online Bank</b></span>
+            </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Services
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" routerLink="/deposit">Deposit</a></li>
+                        <li><a class="dropdown-item" routerLink="/withdraw">Withdraw</a></li>
+                        <li><a class="dropdown-item" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+                                aria-controls="offcanvasExample" (click)="getBalance()">Balance Enquiry</a></li>
+                        <li><a class="dropdown-item" routerLink="/transaction">Transaction History</a></li>
+                        <hr>
+                        <li><button class="dropdown-item" (click)="deleteAcno()"><i
+                                    class="fa-solid fa-trash"></i>&nbsp;Delete Account</button>
+                        </li>
+                        <li><a class="dropdown-item" href="#" (click)="logout()"><i
+                                    class="fa-solid fa-right-from-bracket"></i>&nbsp;Sign
+                                Out</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+    Link with href
+  </a> -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Account Statement</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div>
+            <div class="text-center">
+                <img style="width: 200px;"
+                    src="https://cdn0.iconfinder.com/data/icons/business-dual-color-glyph-set-2/128/balance_sheet-512.png"
+                    alt="">
+            </div>
+            <br>
+            <!-- <p> -->
+               <h1>Hi <b data-mdb-toggle="animation" data-mdb-animation-start="onLoad"
+                data-mdb-animation="fade-in-down" data-mdb-animation-duration="1000" data-mdb-animation-delay="300">{{user}},</b></h1> 
+                <br>
+                <span>{{balance}}</span>
+            <!-- </p> -->
+        </div>
+    </div>
+</div>
+
+<!-- logout popup -->
+<div class="container mt-5" *ngIf="isLogout">
+    <div class="row text-center">
+        <div class="col">
+            <img class="w-25 d-block m-auto"
+                src="https://media.tenor.com/guhB4PpjrmUAAAAC/loading-loading-gif.gif"
+                alt="no img">
+            <h4>Please wait..You're signing out</h4>
+        </div>
+    </div>
+
+</div>
+
+<!-- <div class="container mt-5" *ngIf="deleteMsg">
+    <div class="row text-center">
+        <div class="col">
+            <img class="w-25 d-block m-auto"
+                src="https://media.tenor.com/guhB4PpjrmUAAAAC/loading-loading-gif.gif"
+                alt="no img">
+            <h4>Please wait..You're Account is deleteing</h4>
+        </div>
+    </div> -->
+
+<!-- </div> -->
+<!-- delete confirmation child selector -->
+<app-delete-confirm [serverMsg]="deleteMsg" (onDelete)="deleteParent($event)" (onCancel)="cancel()" [item]="acno"></app-delete-confirm>
+
+<div *ngIf="!confirmMsg">
+    <div class="container mt-5" *ngIf="!isLogout" [ngClass]="acno?'hide':'' ">
+        <div class="row">
+            <div class="col-4 mt-6">
+                <h1 data-mdb-toggle="animation" data-mdb-animation-start="onLoad"
+                data-mdb-animation="fade-in-down" data-mdb-animation-duration="1000" data-mdb-animation-delay="300">Welcome <span style="display: inline-block" class="animate__animated animate__shakeY">{{user}}</span></h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat, dolor nam nesciunt sed vero
+                    impedit vitae iure aspernatur ab fugit, quam quod, voluptatem natus dignissimos laborum accusamus nisi.
+                </p>
+                <div class="collapse" id="collapseExample">
+                    <div class="">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet culpa, quas doloremque, recusandae
+                        molestiae repellendus mollitia perspiciatis nesciunt tempora quod, ipsam officia eum doloribus quasi
+                        quia quam inventore expedita dolores.
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit laudantium natus atque eius dicta
+                        accusantium ipsum numquam? Quis commodi ipsam quas dolorum illum. Recusandae porro officia vero
+                        quibusdam, quia qui?
+                    </div>
+                </div>
+                <button (click)="collapse()" class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <label *ngIf="isCollapse">Read More</label>
+                    <label *ngIf="!isCollapse">Read Less</label>
+                </button>
+    
+            </div>
+            <div class="col-8 ">
+                <img src="https://902558.smushcdn.com/2161880/wp-content/uploads/2020/04/banking-background-design_1223-54.jpg?lossy=1&strip=1&webp=1"
+                    alt="">
+            </div>
+        </div>
+    
+    </div>
+</div>
